@@ -1,4 +1,4 @@
-package com.example.cadastro_pessoas;
+package com.example.cadastropessoas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

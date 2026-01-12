@@ -1,4 +1,4 @@
-package com.example.cadastro_pessoas;
+package com.example.cadastropessoas;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
