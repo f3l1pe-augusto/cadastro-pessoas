@@ -1,6 +1,7 @@
-package com.example.cadastro_pessoas.infrastructure.repository.endereco.model;
+package com.example.cadastropessoas.infrastructure.repository.endereco.model;
 
-import com.example.cadastro_pessoas.infrastructure.repository.pessoa.model.PessoaModel;
+import com.example.cadastropessoas.domain.endereco.entity.IEndereco;
+import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @ToString(of = "id")
 @Entity
 @Table(name = "endereco")
-public class EnderecoModel {
+public class EnderecoModel implements IEndereco {
 
   @Id
   @Basic(optional = false)

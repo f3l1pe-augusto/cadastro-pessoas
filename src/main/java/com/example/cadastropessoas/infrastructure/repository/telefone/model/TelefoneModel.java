@@ -1,7 +1,8 @@
-package com.example.cadastro_pessoas.infrastructure.repository.telefone.model;
+package com.example.cadastropessoas.infrastructure.repository.telefone.model;
 
-import com.example.cadastro_pessoas.domain.tipotelefone.entity.TipoTelefone;
-import com.example.cadastro_pessoas.infrastructure.repository.pessoa.model.PessoaModel;
+import com.example.cadastropessoas.domain.telefone.entity.ITelefone;
+import com.example.cadastropessoas.domain.tipotelefone.entity.TipoTelefone;
+import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.ToString;
 @ToString(of = "id")
 @Entity
 @Table(name = "telefone")
-public class TelefoneModel {
+public class TelefoneModel implements ITelefone {
 
   @Id
   @Basic(optional = false)

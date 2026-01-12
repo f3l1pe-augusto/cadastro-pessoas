@@ -1,6 +1,7 @@
-package com.example.cadastro_pessoas.infrastructure.repository.pessoafisica.model;
+package com.example.cadastropessoas.infrastructure.repository.pessoafisica.model;
 
-import com.example.cadastro_pessoas.infrastructure.repository.pessoa.model.PessoaModel;
+import com.example.cadastropessoas.domain.pessoafisica.entity.IPessoaFisica;
+import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @ToString(of = "id")
 @Entity
 @Table(name = "pessoa_fisica")
-public class PessoaFisicaModel {
+public class PessoaFisicaModel implements IPessoaFisica {
 
   @Id
   @Basic(optional = false)

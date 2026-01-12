@@ -1,6 +1,7 @@
-package com.example.cadastro_pessoas.infrastructure.repository.pessoajuridica.model;
+package com.example.cadastropessoas.infrastructure.repository.pessoajuridica.model;
 
-import com.example.cadastro_pessoas.infrastructure.repository.pessoa.model.PessoaModel;
+import com.example.cadastropessoas.domain.pessoajuridica.entity.IPessoaJuridica;
+import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import lombok.ToString;
 @ToString(of = "id")
 @Entity
 @Table(name = "pessoa_juridica")
-public class PessoaJuridicaModel {
+public class PessoaJuridicaModel implements IPessoaJuridica {
 
   @Id
   @Basic(optional = false)
