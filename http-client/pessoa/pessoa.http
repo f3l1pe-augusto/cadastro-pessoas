@@ -1,0 +1,6 @@
+### Criar pessoa
+POST http://localhost:8080/cadastro-pessoas/api/pessoa
+Content-Type: application/json
+
+### Obter pessoa por ID
+GET http://localhost:8080/cadastro-pessoas/api/pessoa/1
