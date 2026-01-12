@@ -1,4 +1,4 @@
-package com.example.cadastro_pessoas.domain.tipotelefone.entity;
+package com.example.cadastropessoas.domain.tipotelefone.entity;
 
 public enum TipoTelefone {
 
