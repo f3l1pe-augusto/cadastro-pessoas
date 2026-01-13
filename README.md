@@ -1,6 +1,6 @@
 # Cadastro de Pessoas
 
-Desafio Técnico Nexum tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
+Desafio Técnico Nexum Tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
 
 ## 🏗️ Arquitetura
 
@@ -31,7 +31,7 @@ src/main/java/com/example/cadastropessoas/
     └── mapper/                # Mapeadores (MapStruct)
 ```
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias utilizadas
 
 - **Java 23**
 - **Spring Boot 4.0.1**
@@ -52,13 +52,13 @@ src/main/java/com/example/cadastropessoas/
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-## 🔧 Configuração e Execução
+## 🔧 Configuração e execução
 
 ### Pré-requisitos
 - Java 23 ou superior
 - Maven 3.6+
 
-### Como Executar
+### Como executar
 
 1. Clone o repositório:
 ```bash
@@ -81,7 +81,7 @@ mvnw.cmd spring-boot:run
 http://localhost:8080/cadastro-pessoas/api
 ```
 
-### Banco de Dados
+### Banco de dados
 
 O projeto utiliza H2 Database em modo arquivo. Os dados são persistidos em:
 ```
@@ -101,9 +101,9 @@ O projeto utiliza H2 Database em modo arquivo. Os dados são persistidos em:
 http://localhost:8080/cadastro-pessoas/api/pessoa
 ```
 
-### Endpoints Disponíveis
+### Endpoints disponíveis
 
-#### Criar Pessoa Física
+#### Criar pessoa física
 ```http
 POST /pessoa
 Content-Type: application/json
@@ -133,7 +133,7 @@ Content-Type: application/json
 }
 ```
 
-#### Criar Pessoa Jurídica
+#### Criar pessoa jurídica
 ```http
 POST /pessoa
 Content-Type: application/json
@@ -162,7 +162,7 @@ Content-Type: application/json
 }
 ```
 
-#### Atualizar Pessoa
+#### Atualizar pessoa
 ```http
 PUT /pessoa/{id}
 Content-Type: application/json
@@ -174,22 +174,22 @@ Content-Type: application/json
 }
 ```
 
-#### Buscar Pessoa por ID
+#### Buscar pessoa por ID
 ```http
 GET /pessoa/{id}
 ```
 
-#### Listar Todas as Pessoas
+#### Listar todas as pessoas
 ```http
 GET /pessoa
 ```
 
-#### Deletar Pessoa
+#### Deletar pessoa
 ```http
 DELETE /pessoa/{id}
 ```
 
-## 📝 Estrutura de Dados
+## 📝 Estrutura de dados
 
 ### Pessoa
 - `id`: Long
