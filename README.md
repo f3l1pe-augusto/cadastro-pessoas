@@ -1,6 +1,6 @@
 # Cadastro de Pessoas
 
-Desafio Técnico Nexum Tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
+Desafio técnico Nexum Tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
 
 ## 🏗️ Arquitetura
 
