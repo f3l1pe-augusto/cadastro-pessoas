@@ -56,19 +56,6 @@ src/main/java/com/example/cadastropessoas/
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-### Pessoa Física
-- CPF
-- Data de nascimento
-
-### Pessoa Jurídica
-- CNPJ
-- Razão social
-
-### Recursos Adicionais
-- Múltiplos endereços por pessoa
-- Múltiplos telefones por pessoa
-- Tipos de telefone configuráveis
-
 ## 🔧 Configuração e Execução
 
 ### Pré-requisitos
