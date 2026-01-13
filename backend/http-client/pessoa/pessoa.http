@@ -1,0 +1,90 @@
+### Criar Pessoa Física
+POST http://localhost:8080/cadastro-pessoas/api/pessoa
+Content-Type: application/json
+
+{
+  "nome": "João Silva",
+  "email": "joao.silva@email.com",
+  "pessoaFisica": {
+    "cpf": "12345678901",
+    "dataNascimento": "1990-05-15"
+  },
+  "enderecos": [
+    {
+      "logradouro": "Rua das Flores",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "01234567",
+      "complemento": "Apto 45"
+    }
+  ],
+  "telefones": [
+    {
+      "numero": "11987654321",
+      "tipoTelefone": "Telefone Celular"
+    }
+  ]
+}
+
+### Criar Pessoa Jurídica
+POST http://localhost:8080/cadastro-pessoas/api/pessoa
+Content-Type: application/json
+
+{
+  "nome": "XYZ Comércio",
+  "email": "contato@empresa.com",
+  "pessoaJuridica": {
+    "cnpj": "12345678000190",
+    "razaoSocial": "Empresa XYZ Ltda"
+  },
+  "enderecos": [
+    {
+      "logradouro": "Av. Paulista",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "01310100"
+    }
+  ],
+  "telefones": [
+    {
+      "numero": "1133334444",
+      "tipoTelefone": "Telefone Comercial"
+    }
+  ]
+}
+
+### Listar todas as Pessoas
+GET http://localhost:8080/cadastro-pessoas/api/pessoa
+
+### Obter Pessoa por ID
+GET http://localhost:8080/cadastro-pessoas/api/pessoa/1
+
+### Atualizar Pessoa
+PUT http://localhost:8080/cadastro-pessoas/api/pessoa/1
+Content-Type: application/json
+
+{
+  "nome": "João Silva Santos",
+  "email": "joao.santos@email.com",
+  "pessoaFisica": {
+    "cpf": "12345678901",
+    "dataNascimento": "1990-05-15"
+  },
+  "enderecos": [
+    {
+      "logradouro": "Rua Nova",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "cep": "01234567"
+    }
+  ],
+  "telefones": [
+    {
+      "numero": "11912345678",
+      "tipoTelefone": "Telefone Celular"
+    }
+  ]
+}
+
+### Deletar Pessoa
+DELETE http://localhost:8080/cadastro-pessoas/api/pessoa/1
