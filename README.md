@@ -188,33 +188,3 @@ GET /pessoa
 ```http
 DELETE /pessoa/{id}
 ```
-
-## 📝 Estrutura de dados
-
-### Pessoa
-- `id`: Long
-- `nome`: String
-- `email`: String
-- `pessoaFisica`: PessoaFisica (opcional)
-- `pessoaJuridica`: PessoaJuridica (opcional)
-- `enderecos`: Collection<Endereco>
-- `telefones`: Collection<Telefone>
-
-### Pessoa Física
-- `cpf`: String
-- `dataNascimento`: LocalDate
-
-### Pessoa Jurídica
-- `cnpj`: String
-- `razaoSocial`: String
-
-### Endereço
-- `logradouro`: String
-- `cidade`: String
-- `estado`: String
-- `cep`: String
-- `complemento`: String
-
-### Telefone
-- `numero`: String
-- `tipoTelefone`: TipoTelefone (enum)
