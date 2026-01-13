@@ -45,10 +45,10 @@ public class PessoaModel implements IPessoa {
   @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
   private PessoaJuridicaModel pessoaJuridica;
 
-  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
   private Collection<EnderecoModel> enderecos;
 
-  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+  @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
   private Collection<TelefoneModel> telefones;
 
   @Override

@@ -1,6 +1,7 @@
 package com.example.cadastropessoas.infrastructure.repository.endereco.model;
 
 import com.example.cadastropessoas.domain.endereco.entity.IEndereco;
+import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -40,4 +41,9 @@ public class EnderecoModel implements IEndereco {
 
   @Column(name = "complemento")
   private String complemento;
+
+  @Override
+  public void applyPessoa(IPessoa pessoa) {
+    this.pessoa = (PessoaModel) pessoa;
+  }
 }

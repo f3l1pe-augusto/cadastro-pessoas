@@ -1,5 +1,6 @@
 package com.example.cadastropessoas.infrastructure.repository.telefone.model;
 
+import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.domain.telefone.entity.ITelefone;
 import com.example.cadastropessoas.domain.tipotelefone.entity.TipoTelefone;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
@@ -33,4 +34,9 @@ public class TelefoneModel implements ITelefone {
   @Column(name = "tipo_telefone", nullable = false)
   @Enumerated(EnumType.STRING)
   private TipoTelefone tipoTelefone;
+
+  @Override
+  public void applyPessoa(IPessoa pessoa) {
+    this.pessoa = (PessoaModel) pessoa;
+  }
 }

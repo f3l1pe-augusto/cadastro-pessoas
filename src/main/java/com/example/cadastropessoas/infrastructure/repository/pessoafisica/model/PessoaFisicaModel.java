@@ -1,5 +1,6 @@
 package com.example.cadastropessoas.infrastructure.repository.pessoafisica.model;
 
+import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.domain.pessoafisica.entity.IPessoaFisica;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
@@ -24,7 +25,7 @@ public class PessoaFisicaModel implements IPessoaFisica {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @OneToOne(fetch = FetchType.LAZY)
+  @OneToOne
   @JoinColumn(name = "id_pessoa", referencedColumnName = "id", nullable = false)
   private PessoaModel pessoa;
 
@@ -33,4 +34,9 @@ public class PessoaFisicaModel implements IPessoaFisica {
 
   @Column(name = "data_nascimento", nullable = false)
   private LocalDate dataNascimento;
+
+  @Override
+  public void applyPessoa(IPessoa pessoa) {
+    this.pessoa = (PessoaModel) pessoa;
+  }
 }
