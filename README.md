@@ -25,6 +25,7 @@ src/main/java/com/example/cadastropessoas/
 │       ├── PessoaFisicaValidador.java
 │       └── PessoaJuridicaValidador.java
 └── infrastructure/            # Implementações de infraestrutura
+    ├── config/                # Configurações adicionais
     ├── controller/            # Controladores REST
     ├── repository/            # Repositórios JPA
     ├── gateway/               # Implementações de gateways
