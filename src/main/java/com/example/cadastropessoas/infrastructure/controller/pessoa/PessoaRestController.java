@@ -11,11 +11,15 @@ import com.example.cadastropessoas.domain.telefone.exception.TelefoneNaoEncontra
 import com.example.cadastropessoas.infrastructure.mapper.pessoa.PessoaMapper;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.dto.PessoaDTO;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.dto.SalvarPessoaDTO;
+import com.example.cadastropessoas.usecase.pessoa.DeletarPessoaUseCase;
+import com.example.cadastropessoas.usecase.pessoa.ListarPessoasUseCase;
 import com.example.cadastropessoas.usecase.pessoa.SalvarPessoaUseCase;
 import com.example.cadastropessoas.usecase.pessoa.ObterPessoaPorIdUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/pessoa")
@@ -24,6 +28,8 @@ public class PessoaRestController {
 
   private final SalvarPessoaUseCase salvarPessoaUseCase;
   private final ObterPessoaPorIdUseCase obterPessoaPorIdUseCase;
+  private final ListarPessoasUseCase listarPessoasUseCase;
+  private final DeletarPessoaUseCase deletarPessoaUseCase;
   private final PessoaMapper pessoaMapper;
 
   @PostMapping
@@ -95,5 +101,33 @@ public class PessoaRestController {
     IPessoa pessoa = output.getPessoa();
 
     return pessoaMapper.toDTO(pessoa);
+  }
+
+  @GetMapping
+  @ResponseStatus(code = HttpStatus.OK)
+  public List<PessoaDTO> listarPessoas() {
+    ListarPessoasUseCase.Output output = listarPessoasUseCase.executar();
+    List<IPessoa> pessoas = output.getPessoas();
+
+    return pessoas.stream()
+        .map(pessoaMapper::toDTO)
+        .toList();
+  }
+
+  @DeleteMapping("/{id}")
+  @ResponseStatus(code = HttpStatus.NO_CONTENT)
+  public void deletarPessoa(@PathVariable Long id)
+      throws PessoaNaoEncontradaException,
+      InputInvalidoException
+  {
+    var inputObterPessoa = new ObterPessoaPorIdUseCase.Input();
+    inputObterPessoa.setId(id);
+
+    IPessoa pessoa = obterPessoaPorIdUseCase.executar(inputObterPessoa).getPessoa();
+
+    var inputDeletarPessoa = new DeletarPessoaUseCase.Input();
+    inputDeletarPessoa.setPessoa(pessoa);
+
+    deletarPessoaUseCase.executar(inputDeletarPessoa);
   }
 }
