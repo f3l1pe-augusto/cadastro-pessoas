@@ -8,6 +8,8 @@ import com.example.cadastropessoas.infrastructure.repository.pessoa.repository.P
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @AllArgsConstructor
 public class PessoaGatewayImpl implements PessoaGateway {
@@ -26,5 +28,14 @@ public class PessoaGatewayImpl implements PessoaGateway {
   @Override
   public IPessoa salvar(IPessoa pessoa) {
     return pessoaRepository.save((PessoaModel) pessoa);
+  }
+
+  public List<IPessoa> listar() {
+    return List.copyOf(pessoaRepository.findAll());
+  }
+
+  @Override
+  public void deletar(IPessoa pessoa) {
+    pessoaRepository.delete((PessoaModel) pessoa);
   }
 }
