@@ -5,12 +5,8 @@ import com.example.cadastropessoas.domain.endereco.exception.EnderecoNaoEncontra
 import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.domain.pessoa.entity.SalvarPessoa;
 import com.example.cadastropessoas.domain.pessoa.exception.PessoaNaoEncontradaException;
-import com.example.cadastropessoas.domain.pessoafisica.entity.IPessoaFisica;
 import com.example.cadastropessoas.domain.pessoafisica.exception.PessoaFisicaNaoEncontradaException;
-import com.example.cadastropessoas.domain.pessoafisica.gateway.PessoaFisicaGateway;
-import com.example.cadastropessoas.domain.pessoajuridica.entity.IPessoaJuridica;
 import com.example.cadastropessoas.domain.pessoajuridica.exception.PessoaJuridicaNaoEncontradaException;
-import com.example.cadastropessoas.domain.pessoajuridica.gateway.PessoaJuridicaGateway;
 import com.example.cadastropessoas.domain.telefone.exception.TelefoneNaoEncontradoException;
 import com.example.cadastropessoas.infrastructure.mapper.pessoa.PessoaMapper;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.dto.PessoaDTO;
@@ -29,31 +25,54 @@ public class PessoaRestController {
   private final SalvarPessoaUseCase salvarPessoaUseCase;
   private final ObterPessoaPorIdUseCase obterPessoaPorIdUseCase;
   private final PessoaMapper pessoaMapper;
-  private final PessoaFisicaGateway pessoaFisicaGateway;
-  private final PessoaJuridicaGateway pessoaJuridicaGateway;
 
   @PostMapping
   @ResponseStatus(code = HttpStatus.CREATED)
-  public PessoaDTO salvarPessoa(@RequestBody SalvarPessoaDTO salvarPessoaDTO)
-      throws PessoaFisicaNaoEncontradaException,
-      PessoaJuridicaNaoEncontradaException,
+  public PessoaDTO criarPessoa(
+      @RequestBody SalvarPessoaDTO salvarPessoaDTO
+  ) throws TelefoneNaoEncontradoException,
+      PessoaFisicaNaoEncontradaException,
+      EnderecoNaoEncontradoException,
+      PessoaNaoEncontradaException,
       InputInvalidoException,
+      PessoaJuridicaNaoEncontradaException
+  {
+    return salvar(salvarPessoaDTO);
+  }
+
+  @PutMapping("/{id}")
+  @ResponseStatus(code = HttpStatus.OK)
+  public PessoaDTO atualizarPessoa(
+      @PathVariable Long id,
+      @RequestBody SalvarPessoaDTO salvarPessoaDTO
+  ) throws TelefoneNaoEncontradoException,
+      PessoaFisicaNaoEncontradaException,
+      EnderecoNaoEncontradoException,
+      PessoaNaoEncontradaException,
+      InputInvalidoException,
+      PessoaJuridicaNaoEncontradaException
+  {
+    salvarPessoaDTO.setId(id);
+
+    return salvar(salvarPessoaDTO);
+  }
+
+  private PessoaDTO salvar(@RequestBody SalvarPessoaDTO salvarPessoaDTO)
+      throws InputInvalidoException,
       TelefoneNaoEncontradoException,
       EnderecoNaoEncontradoException,
-      PessoaNaoEncontradaException
+      PessoaNaoEncontradaException,
+      PessoaFisicaNaoEncontradaException,
+      PessoaJuridicaNaoEncontradaException
   {
     SalvarPessoa dadosPessoa = pessoaMapper.toSalvarPessoa(salvarPessoaDTO);
-
-    IPessoaFisica pessoaFisica = pessoaFisicaGateway.obterPorId(dadosPessoa.getIdPessoaFisica());
-
-    IPessoaJuridica pessoaJuridica = pessoaJuridicaGateway.obterPorId(dadosPessoa.getIdPessoaJuridica());
 
     var input = new SalvarPessoaUseCase.Input();
     input.setId(dadosPessoa.getId());
     input.setNome(dadosPessoa.getNome());
     input.setEmail(dadosPessoa.getEmail());
-    input.setPessoaFisica(pessoaFisica);
-    input.setPessoaJuridica(pessoaJuridica);
+    input.setPessoaFisica(dadosPessoa.getPessoaFisica());
+    input.setPessoaJuridica(dadosPessoa.getPessoaJuridica());
     input.setTelefones(dadosPessoa.getTelefones());
     input.setEnderecos(dadosPessoa.getEnderecos());
 
