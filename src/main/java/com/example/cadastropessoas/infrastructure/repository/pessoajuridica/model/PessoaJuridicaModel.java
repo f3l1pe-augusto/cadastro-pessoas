@@ -27,7 +27,7 @@ public class PessoaJuridicaModel implements IPessoaJuridica {
   @JoinColumn(name = "id_pessoa", referencedColumnName = "id", nullable = false)
   private PessoaModel pessoa;
 
-  @Column(name = "cnpj", unique = true, nullable = false)
+  @Column(name = "cnpj", nullable = false)
   private String cnpj;
 
   @Column(name = "razao_social", nullable = false)

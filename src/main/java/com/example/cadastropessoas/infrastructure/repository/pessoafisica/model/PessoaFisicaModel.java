@@ -29,7 +29,7 @@ public class PessoaFisicaModel implements IPessoaFisica {
   @JoinColumn(name = "id_pessoa", referencedColumnName = "id", nullable = false)
   private PessoaModel pessoa;
 
-  @Column(name = "cpf", unique = true, nullable = false)
+  @Column(name = "cpf", nullable = false)
   private String cpf;
 
   @Column(name = "data_nascimento", nullable = false)
