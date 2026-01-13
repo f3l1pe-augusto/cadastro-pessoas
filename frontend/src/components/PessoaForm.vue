@@ -160,7 +160,7 @@ import type {Telefone} from "@/model/telefone/Telefone.ts";
 import type {Endereco} from "@/model/endereco/Endereco.ts";
 
 const props = defineProps<{
-  pessoa: Pessoa
+  pessoa?: Pessoa
 }>()
 
 const emit = defineEmits(['salvar'])
@@ -169,44 +169,22 @@ const form = reactive<Pessoa>({
   id: undefined,
   nome: '',
   email: '',
-  enderecos: [
-    {
-      logradouro: '',
-      cidade: '',
-      estado: '',
-      cep: '',
-      complemento: ''
-    }
-  ],
-
-  telefones: [
-    {
-      numero: '',
-      tipoTelefone: 'Telefone Celular'
-    }
-  ],
+  enderecos: [],
+  telefones: [],
   pessoaFisica: {
     cpf: '',
     dataNascimento: ''
   },
-  pessoaJuridica: {
-    cnpj: '',
-    razaoSocial: ''
-  }
+  pessoaJuridica: undefined
 })
+
+
+const tipoPessoa = ref<'FISICA' | 'JURIDICA'>('FISICA')
 
 const telefonePrincipal = ref<Telefone>({
   numero: '',
   tipoTelefone: 'Telefone Celular'
 })
-
-watch(
-  telefonePrincipal,
-  (novoTelefone) => {
-    form.telefones = [novoTelefone]
-  },
-  { immediate: true, deep: true }
-)
 
 const enderecoPrincipal = ref<Endereco>({
   logradouro: '',
@@ -216,6 +194,76 @@ const enderecoPrincipal = ref<Endereco>({
   complemento: ''
 })
 
+function normalizarPessoaJuridica(
+  pj: Partial<Pessoa['pessoaJuridica']> | undefined
+) {
+  return {
+    id: pj?.id,
+    cnpj: pj?.cnpj ?? '',
+    razaoSocial: pj?.razaoSocial ?? ''
+  }
+}
+
+function normalizarTelefone(telefone: Partial<Telefone> | undefined): Telefone {
+  return {
+    id: telefone?.id,
+    numero: telefone?.numero ?? '',
+    tipoTelefone: telefone?.tipoTelefone ?? 'Telefone Celular'
+  }
+}
+
+function normalizarEndereco(endereco: Partial<Endereco> | undefined): Endereco {
+  return {
+    id: endereco?.id,
+    logradouro: endereco?.logradouro ?? '',
+    cidade: endereco?.cidade ?? '',
+    estado: endereco?.estado ?? '',
+    cep: endereco?.cep ?? '',
+    complemento: endereco?.complemento ?? ''
+  }
+}
+
+const isEdicao = ref(false)
+
+watch(
+  () => props.pessoa,
+  (novaPessoa) => {
+    if (!novaPessoa || !novaPessoa.id) return
+
+    isEdicao.value = true
+
+    Object.assign(form, novaPessoa)
+
+    if (novaPessoa.pessoaFisica) {
+      tipoPessoa.value = 'FISICA'
+      form.pessoaJuridica = undefined
+    }
+
+    if (novaPessoa.pessoaJuridica) {
+      tipoPessoa.value = 'JURIDICA'
+      form.pessoaFisica = undefined
+      form.pessoaJuridica = normalizarPessoaJuridica(novaPessoa.pessoaJuridica)
+    }
+
+    if (novaPessoa.telefones?.length) {
+      telefonePrincipal.value = normalizarTelefone(novaPessoa.telefones[0])
+    }
+
+    if (novaPessoa.enderecos?.length) {
+      enderecoPrincipal.value = normalizarEndereco(novaPessoa.enderecos[0])
+    }
+  },
+  { immediate: true }
+)
+
+watch(
+  telefonePrincipal,
+  (novoTelefone) => {
+    form.telefones = [novoTelefone]
+  },
+  { immediate: true, deep: true }
+)
+
 watch(
   enderecoPrincipal,
   (novoEndereco) => {
@@ -224,37 +272,20 @@ watch(
   { immediate: true, deep: true }
 )
 
-const tipoPessoa = ref<'FISICA' | 'JURIDICA'>('FISICA')
-
-watch(
-  () => props.pessoa,
-  (novaPessoa) => {
-    Object.assign(form, novaPessoa)
-
-    if (novaPessoa.pessoaFisica) {
-      tipoPessoa.value = 'FISICA'
-      form.pessoaJuridica = undefined
-    } else if (novaPessoa.pessoaJuridica) {
-      tipoPessoa.value = 'JURIDICA'
-      form.pessoaFisica = undefined
-    }
-  },
-  { immediate: true }
-)
-
 watch(tipoPessoa, (novoTipo) => {
+  if (isEdicao.value) return
+
+  if (novoTipo === 'JURIDICA') {
+    form.pessoaJuridica = normalizarPessoaJuridica(undefined)
+    form.pessoaFisica = undefined
+  }
+
   if (novoTipo === 'FISICA') {
     form.pessoaFisica = {
       cpf: '',
       dataNascimento: ''
     }
     form.pessoaJuridica = undefined
-  } else {
-    form.pessoaJuridica = {
-      cnpj: '',
-      razaoSocial: ''
-    }
-    form.pessoaFisica = undefined
   }
 })
 
