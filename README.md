@@ -1,10 +1,6 @@
 # Cadastro de Pessoas
 
-Sistema de CRUD para cadastro de pessoas físicas e jurídicas desenvolvido com Spring Boot, seguindo os princípios de Clean Architecture.
-
-## 📋 Sobre o Projeto
-
-Este projeto implementa um sistema completo para gerenciamento de cadastro de pessoas, contemplando tanto pessoas físicas quanto jurídicas, com suporte a múltiplos endereços e telefones por pessoa.
+Desafio Técnico Nexum tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
 
 ## 🏗️ Arquitetura
 
@@ -12,7 +8,7 @@ O projeto segue os princípios da **Clean Architecture**, com separação clara 
 
 ```
 src/main/java/com/example/cadastropessoas/
-├── domain/                    # Regras de negócio e entidades de domínio
+├── domain/                    # Entidades de domínio
 │   ├── core/                  # Exceções e componentes compartilhados
 │   ├── pessoa/                # Entidade Pessoa
 │   ├── pessoafisica/          # Entidade Pessoa Física
@@ -20,7 +16,7 @@ src/main/java/com/example/cadastropessoas/
 │   ├── endereco/              # Entidade Endereço
 │   ├── telefone/              # Entidade Telefone
 │   └── tipotelefone/          # Entidade Tipo de Telefone
-├── usecase/                   # Casos de uso da aplicação
+├── usecase/                   # Casos de uso da aplicação 
 │   └── pessoa/
 │       ├── SalvarPessoaUseCase.java
 │       ├── ObterPessoaPorIdUseCase.java
