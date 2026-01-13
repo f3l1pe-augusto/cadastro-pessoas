@@ -52,7 +52,7 @@ src/main/java/com/example/cadastropessoas/
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-## 🔧 Configuração e execução
+## 🔧 Execução e configurações
 
 ### Pré-requisitos
 - Java 23 ou superior
