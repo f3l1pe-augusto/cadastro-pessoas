@@ -39,7 +39,7 @@ public class SalvarPessoaUseCase {
   private final TelefoneGateway telefoneGateway;
   private final PessoaFisicaGateway pessoaFisicaGateway;
   private final PessoaJuridicaGateway pessoaJuridicaGateway;
-  private List<PessoaValidador> validadores;
+  private final List<PessoaValidador> validadores;
 
   @Transactional(rollbackOn = Exception.class)
   public Output executar(Input input)
@@ -56,29 +56,65 @@ public class SalvarPessoaUseCase {
     pessoa.setNome(input.getNome());
     pessoa.setEmail(input.getEmail());
 
+    processarPessoaFisica(input, pessoa);
+
+    processarPessoaJuridica(input, pessoa);
+
+    validarPessoa(pessoa);
+
+    processarEnderecos(input, pessoa);
+
+    processarTelefones(input, pessoa);
+
+    IPessoa pessoaSalva = pessoaGateway.salvar(pessoa);
+
+    Output output = new Output();
+    output.setPessoa(pessoaSalva);
+
+    return output;
+  }
+
+  private void processarPessoaFisica(Input input, IPessoa pessoa) throws PessoaFisicaNaoEncontradaException {
     if (input.getPessoaFisica() != null) {
-      IPessoaFisica pessoaFisica = pessoaFisicaGateway.obterPorId(input.getPessoaFisica().getId());
+      IPessoaFisica pessoaFisica = pessoa.getPessoaFisica() != null
+          ? pessoa.getPessoaFisica()
+          : pessoaFisicaGateway.obterPorId(null);
 
       pessoaFisica.setCpf(input.getPessoaFisica().getCpf());
       pessoaFisica.setDataNascimento(input.getPessoaFisica().getDataNascimento());
       pessoaFisica.applyPessoa(pessoa);
       pessoa.applyPessoaFisica(pessoaFisica);
     }
+  }
 
+  private void processarPessoaJuridica(Input input, IPessoa pessoa) throws PessoaJuridicaNaoEncontradaException {
     if (input.getPessoaJuridica() != null) {
-      IPessoaJuridica pessoaJuridica = pessoaJuridicaGateway.obterPorId(input.getPessoaJuridica().getId());
+      IPessoaJuridica pessoaJuridica = pessoa.getPessoaJuridica() != null
+          ? pessoa.getPessoaJuridica()
+          : pessoaJuridicaGateway.obterPorId(null);
 
       pessoaJuridica.setCnpj(input.getPessoaJuridica().getCnpj());
       pessoaJuridica.setRazaoSocial(input.getPessoaJuridica().getRazaoSocial());
       pessoaJuridica.applyPessoa(pessoa);
       pessoa.applyPessoaJuridica(pessoaJuridica);
     }
+  }
 
-    validarPessoa(pessoa);
+  private void processarEnderecos(Input input, IPessoa pessoa) throws EnderecoNaoEncontradoException {
+    @SuppressWarnings("unchecked")
+    List<IEndereco> enderecosAtuais = (List<IEndereco>) pessoa.getEnderecos();
 
-    var enderecos = new ArrayList<IEndereco>();
+    if (enderecosAtuais != null) {
+      enderecosAtuais.clear();
+    } else {
+      enderecosAtuais = new ArrayList<>();
+      pessoa.applyEnderecos(enderecosAtuais);
+    }
+
     for (SalvarEndereco enderecoInput : input.getEnderecos()) {
-      IEndereco endereco = enderecoGateway.obterPorId(enderecoInput.getId());
+      IEndereco endereco = enderecoInput.getId() != null
+          ? enderecoGateway.obterPorId(enderecoInput.getId())
+          : enderecoGateway.obterPorId(null);
 
       endereco.setLogradouro(enderecoInput.getLogradouro());
       endereco.setCidade(enderecoInput.getCidade());
@@ -87,27 +123,32 @@ public class SalvarPessoaUseCase {
       endereco.setComplemento(enderecoInput.getComplemento());
       endereco.applyPessoa(pessoa);
 
-      enderecos.add(endereco);
+      enderecosAtuais.add(endereco);
     }
-    pessoa.applyEnderecos(enderecos);
+  }
 
-    var telefones = new ArrayList<ITelefone>();
+  private void processarTelefones(Input input, IPessoa pessoa) throws TelefoneNaoEncontradoException {
+    @SuppressWarnings("unchecked")
+    List<ITelefone> telefonesAtuais = (List<ITelefone>) pessoa.getTelefones();
+
+    if (telefonesAtuais != null) {
+      telefonesAtuais.clear();
+    } else {
+      telefonesAtuais = new ArrayList<>();
+      pessoa.applyTelefones(telefonesAtuais);
+    }
+
     for (SalvarTelefone telefoneInput : input.getTelefones()) {
-      ITelefone telefone = telefoneGateway.obterPorId(telefoneInput.getId());
+      ITelefone telefone = telefoneInput.getId() != null
+          ? telefoneGateway.obterPorId(telefoneInput.getId())
+          : telefoneGateway.obterPorId(null);
 
       telefone.setNumero(telefoneInput.getNumero());
       telefone.setTipoTelefone(telefoneInput.getTipoTelefone());
       telefone.applyPessoa(pessoa);
 
-      telefones.add(telefone);
+      telefonesAtuais.add(telefone);
     }
-    pessoa.applyTelefones(telefones);
-
-    IPessoa pessoaSalva = pessoaGateway.salvar(pessoa);
-
-    Output output = new Output();
-    output.setPessoa(pessoaSalva);
-    return output;
   }
 
   private void validarInput(Input input) throws InputInvalidoException {
