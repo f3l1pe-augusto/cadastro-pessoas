@@ -67,7 +67,7 @@ frontend/src/
 ## 🚀 Tecnologias utilizadas
 
 ### Backend
-- **Java 23**
+- **Java 21**
 - **Spring Boot 4.0.1**
 - **Maven** 
 
@@ -99,7 +99,7 @@ cd cadastro-pessoas
 ### Pré-requisitos
 
 #### Backend
-- Java 23 ou superior
+- Java 21 ou superior
 - Maven 3.6+
 
 #### Frontend
