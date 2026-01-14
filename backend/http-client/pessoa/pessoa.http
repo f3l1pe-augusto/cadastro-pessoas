@@ -13,7 +13,7 @@ Content-Type: application/json
     {
       "logradouro": "Rua das Flores",
       "cidade": "São Paulo",
-      "estado": "SP",
+      "estado": "São Paulo",
       "cep": "01234567",
       "complemento": "Apto 45"
     }
@@ -41,7 +41,7 @@ Content-Type: application/json
     {
       "logradouro": "Av. Paulista",
       "cidade": "São Paulo",
-      "estado": "SP",
+      "estado": "São Paulo",
       "cep": "01310100"
     }
   ],
@@ -74,7 +74,7 @@ Content-Type: application/json
     {
       "logradouro": "Rua Nova",
       "cidade": "São Paulo",
-      "estado": "SP",
+      "estado": "São Paulo",
       "cep": "01234567"
     }
   ],
