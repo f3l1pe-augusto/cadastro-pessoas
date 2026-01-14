@@ -103,7 +103,7 @@ cd cadastro-pessoas
 - Maven 3.6+
 
 #### Frontend
-- Node.js 20+
+- Node.js 20.19+ ou 22.12+
 - npm ou yarn
 
 ### Executando o backend
