@@ -1,5 +1,7 @@
 # Cadastro de Pessoas
 
+![Tela Inicial](docs/images/tela-inicial.png)
+
 ## 📋 Sobre o Projeto
 
 Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídicas, com suporte a múltiplos endereços e telefones. O projeto é dividido em:
