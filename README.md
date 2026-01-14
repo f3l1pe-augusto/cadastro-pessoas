@@ -1,8 +1,8 @@
-# Cadastro de Pessoas
+# Cadastro de pessoas
 
 ![Tela Inicial](docs/images/tela-inicial.png)
 
-## 📋 Sobre o Projeto
+## 📋 Sobre o projeto
 
 Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídicas. O projeto é dividido em:
 
@@ -57,8 +57,6 @@ frontend/src/
 │   └── telefone/
 ├── router/                    # Configuração de rotas
 │   └── index.ts
-├── stores/                    # Gerenciamento de estado (Pinia)
-│   └── counter.ts
 ├── views/                     # Páginas da aplicação
 │   ├── PessoaListView.vue     # Listagem de pessoas
 │   └── PessoaFormView.vue     # Formulário (criar/editar)
@@ -66,7 +64,7 @@ frontend/src/
 └── main.ts                    # Ponto de entrada
 ```
 
-## 🚀 Tecnologias Utilizadas
+## 🚀 Tecnologias utilizadas
 
 ### Backend
 - **Java 23**
@@ -80,14 +78,23 @@ frontend/src/
 
 ## 📦 Funcionalidades
 
-### CRUD de Pessoas
+### CRUD de pessoas
 - ✅ Criar pessoa (física ou jurídica)
 - ✅ Atualizar pessoa
 - ✅ Buscar pessoa por ID
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-## 🔧 Como Executar
+## 📥 Clonando o projeto
+
+Clone o repositório para sua máquina local:
+
+```bash
+git clone https://github.com/f3l1pe-augusto/cadastro-pessoas.git
+cd cadastro-pessoas
+```
+
+## 🔧 Como executar
 
 ### Pré-requisitos
 
@@ -99,7 +106,7 @@ frontend/src/
 - Node.js 20+
 - npm ou yarn
 
-### Executando o Backend
+### Executando o backend
 
 1. Navegue até a pasta do backend:
 ```bash
@@ -121,7 +128,7 @@ mvnw.cmd spring-boot:run
 http://localhost:8080/cadastro-pessoas/api
 ```
 
-### Executando o Frontend
+### Executando o frontend
 
 1. Navegue até a pasta do frontend:
 ```bash
@@ -143,7 +150,7 @@ npm run dev
 http://localhost:5173
 ```
 
-## 💾 Banco de Dados
+## 💾 Banco de dados
 
 O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
 
