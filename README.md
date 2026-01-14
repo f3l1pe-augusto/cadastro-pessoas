@@ -1,14 +1,21 @@
 # Cadastro de Pessoas
 
-Desafio técnico Nexum Tecnologia: Sistema de CRUD para cadastro de pessoas físicas e jurídicas - Por Felipe Ferreira.
+## 📋 Sobre o Projeto
+
+Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídicas, com suporte a múltiplos endereços e telefones. O projeto é dividido em:
+
+- **Backend**: APIs RESTful desenvolvida em Spring Boot seguindo princípios de Clean Architecture
+- **Frontend**: Interface web desenvolvida em Vue.js 3 com TypeScript
 
 ## 🏗️ Arquitetura
 
-O projeto segue os princípios da **Clean Architecture**, com separação clara de responsabilidades:
+### Backend - Clean Architecture
+
+O backend segue os princípios da **Clean Architecture**, com separação clara de responsabilidades:
 
 ```
-src/main/java/com/example/cadastropessoas/
-├── domain/                    # Entidades de domínio
+backend/src/main/java/com/example/cadastropessoas/
+├── domain/                    # Entidades de domínio (regras de negócio)
 │   ├── core/                  # Exceções e componentes compartilhados
 │   ├── pessoa/                # Entidade Pessoa
 │   ├── pessoafisica/          # Entidade Pessoa Física
@@ -25,46 +32,76 @@ src/main/java/com/example/cadastropessoas/
 │       ├── PessoaFisicaValidador.java
 │       └── PessoaJuridicaValidador.java
 └── infrastructure/            # Implementações de infraestrutura
-    ├── config/                # Configurações adicionais
+    ├── config/                # Configurações Spring
     ├── controller/            # Controladores REST
     ├── repository/            # Repositórios JPA
     ├── gateway/               # Implementações de gateways
     └── mapper/                # Mapeadores (MapStruct)
 ```
 
-## 🚀 Tecnologias utilizadas
+### Frontend - Vue.js
 
+```
+frontend/src/
+├── api/                       # Serviços de comunicação com API
+│   └── pessoa.api.ts
+├── components/                # Componentes reutilizáveis
+│   └── PessoaForm.vue
+├── model/                     # Interfaces TypeScript
+│   ├── endereco/
+│   ├── pessoa/
+│   ├── pessoa-fisica/
+│   ├── pessoa-juridica/
+│   └── telefone/
+├── router/                    # Configuração de rotas
+│   └── index.ts
+├── stores/                    # Gerenciamento de estado (Pinia)
+│   └── counter.ts
+├── views/                     # Páginas da aplicação
+│   ├── PessoaListView.vue     # Listagem de pessoas
+│   └── PessoaFormView.vue     # Formulário (criar/editar)
+├── App.vue                    # Componente raiz
+└── main.ts                    # Ponto de entrada
+```
+
+## 🚀 Tecnologias Utilizadas
+
+### Backend
 - **Java 23**
 - **Spring Boot 4.0.1**
-  - Spring Web
-  - Spring Data JPA
-  - Spring DevTools
-- **H2 Database** - Banco de dados em arquivo
-- **Lombok** - Redução de boilerplate
-- **MapStruct 1.6.3** - Mapeamento de objetos
-- **Maven** - Gerenciamento de dependências
+- **Maven** 
+
+### Frontend
+- **Vue.js 3**
+- **TypeScript**
+- **Bootstrap**
 
 ## 📦 Funcionalidades
 
-### Pessoa
+### CRUD de Pessoas
 - ✅ Criar pessoa (física ou jurídica)
 - ✅ Atualizar pessoa
 - ✅ Buscar pessoa por ID
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-## 🔧 Execução e configurações
+## 🔧 Como Executar
 
 ### Pré-requisitos
+
+#### Backend
 - Java 23 ou superior
 - Maven 3.6+
 
-### Como executar
+#### Frontend
+- Node.js 20+
+- npm ou yarn
 
-1. Clone o repositório:
+### Executando o Backend
+
+1. Navegue até a pasta do backend:
 ```bash
-git clone https://github.com/f3l1pe-augusto/cadastro-pessoas.git
-cd cadastro-pessoas
+cd backend
 ```
 
 2. Execute o projeto:
@@ -77,115 +114,55 @@ Ou no Windows:
 mvnw.cmd spring-boot:run
 ```
 
-3. A aplicação estará disponível em:
+3. A API estará disponível em:
 ```
 http://localhost:8080/cadastro-pessoas/api
 ```
 
-### Banco de dados
+### Executando o Frontend
 
-O projeto utiliza H2 Database em modo arquivo. Os dados são persistidos em:
-```
-./data/cadastro_pessoas_db.mv.db
+1. Navegue até a pasta do frontend:
+```bash
+cd frontend
 ```
 
-**Configurações do banco:**
-- URL: `jdbc:h2:file:./data/cadastro_pessoas_db`
-- Usuário: `sa`
-- Senha: `password`
-- DDL: `create-drop` (recriar estrutura a cada execução)
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Execute em modo de desenvolvimento:
+```bash
+npm run dev
+```
+
+4. A aplicação estará disponível em:
+```
+http://localhost:5173
+```
+
+## 💾 Banco de Dados
+
+O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
+
+### Configurações
+
+- **URL**: `jdbc:h2:file:./data/cadastro_pessoas_db`
+- **Driver**: `org.h2.Driver`
+- **Usuário**: `sa`
+- **Senha**: `password`
+- **DDL Auto**: `update` (mantém os dados entre execuções)
+- **Localização do arquivo**: `./data/cadastro_pessoas_db.mv.db`
 
 ## 📡 API Endpoints
 
-### Base URL
-```
-http://localhost:8080/cadastro-pessoas/api/pessoa
-```
+O projeto inclui um arquivo HTTP Client na pasta `backend/http-client/pessoa/pessoa.http` com exemplos prontos de requisições para testar todos os endpoints.
 
-### Endpoints disponíveis
+Use este arquivo com clientes HTTP como:
+- IntelliJ IDEA HTTP Client
+- VS Code REST Client extension
+- Ou qualquer ferramenta similar
 
-#### Criar pessoa física
-```http
-POST /pessoa
-Content-Type: application/json
+## 👨‍💻 Autor
 
-{
-  "nome": "João Silva",
-  "email": "joao.silva@email.com",
-  "pessoaFisica": {
-    "cpf": "12345678901",
-    "dataNascimento": "1990-05-15"
-  },
-  "enderecos": [
-    {
-      "logradouro": "Rua das Flores",
-      "cidade": "São Paulo",
-      "estado": "SP",
-      "cep": "01234567",
-      "complemento": "Apto 45"
-    }
-  ],
-  "telefones": [
-    {
-      "numero": "11987654321",
-      "tipoTelefone": "Telefone Celular"
-    }
-  ]
-}
-```
-
-#### Criar pessoa jurídica
-```http
-POST /pessoa
-Content-Type: application/json
-
-{
-  "nome": "XYZ Comércio",
-  "email": "contato@empresa.com",
-  "pessoaJuridica": {
-    "cnpj": "12345678000190",
-    "razaoSocial": "Empresa XYZ Ltda"
-  },
-  "enderecos": [
-    {
-      "logradouro": "Av. Paulista",
-      "cidade": "São Paulo",
-      "estado": "SP",
-      "cep": "01310100"
-    }
-  ],
-  "telefones": [
-    {
-      "numero": "1133334444",
-      "tipoTelefone": "Telefone Fixo"
-    }
-  ]
-}
-```
-
-#### Atualizar pessoa
-```http
-PUT /pessoa/{id}
-Content-Type: application/json
-
-{
-  "nome": "João Silva Atualizado",
-  "email": "joao.silva.novo@email.com",
-  ...
-}
-```
-
-#### Buscar pessoa por ID
-```http
-GET /pessoa/{id}
-```
-
-#### Listar todas as pessoas
-```http
-GET /pessoa
-```
-
-#### Deletar pessoa
-```http
-DELETE /pessoa/{id}
-```
+- **Felipe Ferreira**
