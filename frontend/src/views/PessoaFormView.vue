@@ -1,6 +1,6 @@
 <template>
   <div class="container mt-4">
-    <h2>{{ isEdicao ? 'Editar Pessoa' : 'Cadastrar Pessoa' }}</h2>
+    <h2>{{ isEdicao ? 'Editar pessoa' : 'Cadastrar pessoa' }}</h2>
 
     <PessoaForm
       :pessoa="pessoa"
