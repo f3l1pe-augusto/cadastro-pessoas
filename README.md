@@ -9,7 +9,7 @@ Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídic
 - **Backend**: APIs RESTful desenvolvidas em Spring Boot seguindo princípios de Clean Architecture
 - **Frontend**: Interface web desenvolvida em Vue.js 3 com TypeScript
 
-## 🏗️ Arquitetura
+## Arquitetura
 
 ### Backend - Clean Architecture
 
@@ -64,7 +64,7 @@ frontend/src/
 └── main.ts                    # Ponto de entrada
 ```
 
-## 🚀 Tecnologias utilizadas
+## Tecnologias utilizadas
 
 ### Backend
 - **Java 21**
@@ -76,7 +76,7 @@ frontend/src/
 - **TypeScript**
 - **Bootstrap**
 
-## 📦 Funcionalidades
+## Funcionalidades
 
 ### CRUD de pessoas
 - ✅ Criar pessoa (física ou jurídica)
@@ -85,7 +85,7 @@ frontend/src/
 - ✅ Listar todas as pessoas
 - ✅ Deletar pessoa
 
-## 📥 Clonando o projeto
+## Clonando o projeto
 
 Clone o repositório para sua máquina local:
 
@@ -150,7 +150,7 @@ npm run dev
 http://localhost:5173
 ```
 
-## 💾 Banco de dados
+## Banco de dados
 
 O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
 
@@ -163,7 +163,7 @@ O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
 - **DDL Auto**: `update` (mantém os dados entre execuções)
 - **Localização do arquivo**: `./data/cadastro_pessoas_db.mv.db`
 
-## 📡 API Endpoints
+## API Endpoints
 
 O projeto inclui um arquivo HTTP Client na pasta `backend/http-client/pessoa/pessoa.http` com exemplos prontos de requisições para testar todos os endpoints.
 
@@ -171,7 +171,3 @@ Use este arquivo com clientes HTTP como:
 - IntelliJ IDEA HTTP Client
 - VS Code REST Client extension
 - Ou qualquer ferramenta similar
-
-## 👨‍💻 Autor
-
-- **Felipe Ferreira**
