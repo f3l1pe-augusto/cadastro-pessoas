@@ -6,22 +6,23 @@ Content-Type: application/json
   "nome": "João Silva",
   "email": "joao.silva@email.com",
   "pessoaFisica": {
-    "cpf": "12345678901",
+    "cpf": "1234567801",
     "dataNascimento": "1990-05-15"
   },
   "enderecos": [
     {
       "logradouro": "Rua das Flores",
-      "cidade": "São Paulo",
-      "estado": "SP",
-      "cep": "01234567",
-      "complemento": "Apto 45"
+      "numero": "123",
+      "bairro": "Jardim Primavera",
+      "cidade": "SP",
+      "uf": "SP",
+      "cep": "01234567"
     }
   ],
   "telefones": [
     {
       "numero": "11987654321",
-      "tipoTelefone": "Telefone Celular"
+      "tipoTelefone": "TELEFONE_CELULAR"
     }
   ]
 }
@@ -40,15 +41,17 @@ Content-Type: application/json
   "enderecos": [
     {
       "logradouro": "Av. Paulista",
+      "numero": "1000",
+      "bairro": "Bela Vista",
       "cidade": "São Paulo",
-      "estado": "SP",
+      "uf": "SP",
       "cep": "01310100"
     }
   ],
   "telefones": [
     {
       "numero": "1133334444",
-      "tipoTelefone": "Telefone Comercial"
+      "tipoTelefone": "TELEFONE_COMERCIAL"
     }
   ]
 }
@@ -73,15 +76,17 @@ Content-Type: application/json
   "enderecos": [
     {
       "logradouro": "Rua Nova",
+      "numero": "456",
+      "bairro": "Centro",
       "cidade": "São Paulo",
-      "estado": "SP",
+      "uf": "SP",
       "cep": "01234567"
     }
   ],
   "telefones": [
     {
       "numero": "11912345678",
-      "tipoTelefone": "Telefone Celular"
+      "tipoTelefone": "TELEFONE_CELULAR"
     }
   ]
 }
