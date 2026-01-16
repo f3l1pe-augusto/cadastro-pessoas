@@ -17,7 +17,7 @@ Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídic
 - **Maven** 
 
 ### Frontend
-- **Vue.js 3**
+- **Vue.js**
 - **TypeScript**
 - **Bootstrap**
 
