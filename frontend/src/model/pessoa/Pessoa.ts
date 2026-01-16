@@ -4,11 +4,11 @@ import type {Telefone} from "@/model/telefone/Telefone.ts";
 import type {PessoaJuridica} from "@/model/pessoa-juridica/PessoaJuridica.ts";
 
 export interface Pessoa {
-  id?: number
-  nome: string
-  email: string
-  pessoaFisica?: PessoaFisica
-  pessoaJuridica?: PessoaJuridica
-  enderecos: Endereco[]
-  telefones: Telefone[]
+  id?: number;
+  nome: string;
+  email: string;
+  pessoaFisica?: PessoaFisica;
+  pessoaJuridica?: PessoaJuridica;
+  enderecos: Endereco[];
+  telefones: Telefone[];
 }

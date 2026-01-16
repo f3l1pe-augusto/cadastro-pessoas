@@ -1,5 +1,5 @@
 export interface PessoaFisica {
-  id?: number
-  cpf: string
-  dataNascimento: string
+  id?: number;
+  cpf: string;
+  dataNascimento: string;
 }
