@@ -4,6 +4,6 @@ import com.example.cadastropessoas.domain.core.exception.InputInvalidoException;
 import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 
 public interface PessoaValidador {
-    void validar(IPessoa pessoa) throws InputInvalidoException;
-    boolean aceita(IPessoa pessoa);
+  void validar(IPessoa pessoa) throws InputInvalidoException;
+  boolean aceita(IPessoa pessoa);
 }
