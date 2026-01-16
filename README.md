@@ -7,7 +7,7 @@
 Sistema full-stack para gerenciamento de cadastro de pessoas físicas e jurídicas. O projeto é dividido em:
 
 - **Backend**: APIs RESTful desenvolvidas em Spring Boot seguindo princípios de Clean Architecture
-- **Frontend**: Interface web desenvolvida em Vue.js 3 com TypeScript
+- **Frontend**: Interface web desenvolvida em Vue.js com TypeScript
 
 ## Tecnologias utilizadas
 
