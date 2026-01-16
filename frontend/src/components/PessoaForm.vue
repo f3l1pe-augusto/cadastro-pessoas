@@ -54,9 +54,9 @@
           v-model="telefonePrincipal.tipoTelefone"
           class="form-select"
         >
-          <option value="Telefone Celular">Celular</option>
-          <option value="Telefone Residencial">Residencial</option>
-          <option value="Telefone Comercial">Comercial</option>
+          <option value="TELEFONE_CELULAR">Celular</option>
+          <option value="TELEFONE_RESIDENCIAL">Residencial</option>
+          <option value="TELEFONE_COMERCIAL">Comercial</option>
         </select>
       </div>
     </div>
@@ -120,6 +120,28 @@
       </div>
 
       <div class="col-md-4 mb-3">
+        <label for="numero" class="form-label">Número</label>
+        <input
+          id="numero"
+          v-model="enderecoPrincipal.numero"
+          class="form-control"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 mb-3">
+        <label for="bairro" class="form-label">Bairro</label>
+        <input
+          id="bairro"
+          v-model="enderecoPrincipal.bairro"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="col-md-4 mb-3">
         <label for="complemento" class="form-label">Complemento</label>
         <input
           id="complemento"
@@ -140,14 +162,41 @@
         />
       </div>
 
-      <div class="col-md-3 mb-3">
-        <label for="estado" class="form-label">Estado</label>
-        <input
-          id="estado"
-          v-model="enderecoPrincipal.estado"
-          class="form-control"
-          required
-        />
+      <div class="col-md-2 mb-3">
+        <label for="uf" class="form-label">UF</label>
+        <select
+          id="uf"
+          v-model="enderecoPrincipal.uf"
+          class="form-select"
+        >
+          <option value="AC">AC</option>
+          <option value="AL">AL</option>
+          <option value="AP">AP</option>
+          <option value="AM">AM</option>
+          <option value="BA">BA</option>
+          <option value="CE">CE</option>
+          <option value="DF">DF</option>
+          <option value="ES">ES</option>
+          <option value="GO">GO</option>
+          <option value="MA">MA</option>
+          <option value="MT">MT</option>
+          <option value="MS">MS</option>
+          <option value="MG">MG</option>
+          <option value="PA">PA</option>
+          <option value="PB">PB</option>
+          <option value="PR">PR</option>
+          <option value="PE">PE</option>
+          <option value="PI">PI</option>
+          <option value="RJ">RJ</option>
+          <option value="RN">RN</option>
+          <option value="RS">RS</option>
+          <option value="RO">RO</option>
+          <option value="RR">RR</option>
+          <option value="SC">SC</option>
+          <option value="SP">SP</option>
+          <option value="SE">SE</option>
+          <option value="TO">TO</option>
+        </select>
       </div>
 
       <div class="col-md-3 mb-3">
@@ -202,13 +251,15 @@ const tipoPessoa = ref<'FISICA' | 'JURIDICA'>('FISICA')
 
 const telefonePrincipal = ref<Telefone>({
   numero: '',
-  tipoTelefone: 'Telefone Celular'
+  tipoTelefone: 'TELEFONE_CELULAR'
 })
 
 const enderecoPrincipal = ref<Endereco>({
   logradouro: '',
+  numero: '',
+  bairro: '',
   cidade: '',
-  estado: '',
+  uf: 'AC',
   cep: '',
   complemento: ''
 })
@@ -227,7 +278,7 @@ function normalizarTelefone(telefone: Partial<Telefone> | undefined): Telefone {
   return {
     id: telefone?.id,
     numero: telefone?.numero ?? '',
-    tipoTelefone: telefone?.tipoTelefone ?? 'Telefone Celular'
+    tipoTelefone: telefone?.tipoTelefone ?? 'TELEFONE_CELULAR'
   }
 }
 
@@ -235,8 +286,10 @@ function normalizarEndereco(endereco: Partial<Endereco> | undefined): Endereco {
   return {
     id: endereco?.id,
     logradouro: endereco?.logradouro ?? '',
+    numero: endereco?.numero ?? '',
+    bairro: endereco?.bairro ?? '',
     cidade: endereco?.cidade ?? '',
-    estado: endereco?.estado ?? '',
+    uf: endereco?.uf ?? 'AC',
     cep: endereco?.cep ?? '',
     complemento: endereco?.complemento ?? ''
   }
