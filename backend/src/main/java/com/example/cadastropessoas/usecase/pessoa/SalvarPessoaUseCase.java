@@ -60,7 +60,7 @@ public class SalvarPessoaUseCase {
 
     processarPessoaJuridica(input, pessoa);
 
-    validarPessoa(pessoa);
+    validarTipoPessoa(pessoa);
 
     processarEnderecos(input, pessoa);
 
@@ -109,8 +109,10 @@ public class SalvarPessoaUseCase {
           : enderecoGateway.obterPorId(null);
 
       endereco.setLogradouro(enderecoInput.getLogradouro());
+      endereco.setNumero(enderecoInput.getNumero());
+      endereco.setBairro(enderecoInput.getBairro());
       endereco.setCidade(enderecoInput.getCidade());
-      endereco.setEstado(enderecoInput.getEstado());
+      endereco.setUf(enderecoInput.getUf());
       endereco.setCep(enderecoInput.getCep());
       endereco.setComplemento(enderecoInput.getComplemento());
       endereco.applyPessoa(pessoa);
@@ -139,7 +141,7 @@ public class SalvarPessoaUseCase {
     pessoa.applyTelefones(telefonesNovos);
   }
 
-  private void validarInput(Input input) throws InputInvalidoException {
+  private void validarInput(Input input) throws InputInvalidoException, PessoaNaoEncontradaException {
     if (input == null) {
       throw new InputInvalidoException("Input inválido.");
     }
@@ -152,16 +154,62 @@ public class SalvarPessoaUseCase {
       throw new InputInvalidoException("E-mail inválido.");
     }
 
+    validarEmailUnico(input);
+    validarEndereco(input);
+    validarTelefone(input);
+  }
+
+  private void validarEmailUnico(Input input) throws InputInvalidoException {
+    if (pessoaGateway.emailExisteParaOutraPessoa(input.getEmail(), input.getId())) {
+      throw new InputInvalidoException("E-mail já cadastrado.");
+    }
+  }
+
+  private void validarEndereco(Input input) throws InputInvalidoException {
+    if (input.getEnderecos() == null || input.getEnderecos().isEmpty()) {
+      throw new InputInvalidoException("A pessoa deve possuir ao menos um endereço.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getLogradouro() == null || endereco.getLogradouro().isBlank())) {
+      throw new InputInvalidoException("Logradouro do endereço inválido.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getNumero() == null || endereco.getNumero().isBlank())) {
+      throw new InputInvalidoException("Número do endereço inválido.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getBairro() == null || endereco.getBairro().isBlank())) {
+      throw new InputInvalidoException("Bairro do endereço inválido.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCidade() == null || endereco.getCidade().isBlank())) {
+      throw new InputInvalidoException("Cidade do endereço inválida.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getUf() == null)) {
+      throw new InputInvalidoException("UF do endereço inválida.");
+    }
+
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCep() == null || endereco.getCep().isBlank())) {
+      throw new InputInvalidoException("CEP do endereço inválido.");
+    }
+  }
+
+  private void validarTelefone(Input input) throws InputInvalidoException {
     if (input.getTelefones() == null || input.getTelefones().isEmpty()) {
       throw new InputInvalidoException("A pessoa deve possuir ao menos um telefone.");
     }
 
-    if (input.getEnderecos() == null || input.getEnderecos().isEmpty()) {
-      throw new InputInvalidoException("A pessoa deve possuir ao menos um endereço.");
+    if (input.getTelefones().stream().anyMatch(telefone -> telefone.getNumero() == null || telefone.getNumero().isBlank())) {
+      throw new InputInvalidoException("Número do telefone inválido.");
+    }
+
+    if (input.getTelefones().stream().anyMatch(telefone -> telefone.getTipoTelefone() == null)) {
+      throw new InputInvalidoException("Tipo do telefone inválido.");
     }
   }
 
-  private void validarPessoa(IPessoa pessoa) throws InputInvalidoException {
+  private void validarTipoPessoa(IPessoa pessoa) throws InputInvalidoException {
     for (PessoaValidador validador : validadores) {
       if (validador.aceita(pessoa)) {
         validador.validar(pessoa);

@@ -10,4 +10,5 @@ public interface PessoaGateway {
   IPessoa salvar(IPessoa pessoa);
   List<IPessoa> listar();
   void deletar(IPessoa pessoa);
+  boolean emailExisteParaOutraPessoa(String email, Long id);
 }

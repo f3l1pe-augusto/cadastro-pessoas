@@ -38,4 +38,9 @@ public class PessoaGatewayImpl implements PessoaGateway {
   public void deletar(IPessoa pessoa) {
     pessoaRepository.delete((PessoaModel) pessoa);
   }
+
+  @Override
+  public boolean emailExisteParaOutraPessoa(String email, Long id) {
+    return pessoaRepository.existsByEmailAndIdNot(email, id);
+  }
 }
