@@ -5,4 +5,5 @@ import com.example.cadastropessoas.domain.pessoajuridica.exception.PessoaJuridic
 
 public interface PessoaJuridicaGateway {
   IPessoaJuridica obterPorId(Long id) throws PessoaJuridicaNaoEncontradaException;
+  boolean cnpjExisteParaOutraPessoa(String cpf, Long id);
 }

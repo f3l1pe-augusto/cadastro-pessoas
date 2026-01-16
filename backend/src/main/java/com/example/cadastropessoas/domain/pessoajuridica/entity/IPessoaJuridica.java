@@ -4,6 +4,7 @@ import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 
 public interface IPessoaJuridica {
   /* Getters */
+  Long getId();
   String getCnpj();
   String getRazaoSocial();
 

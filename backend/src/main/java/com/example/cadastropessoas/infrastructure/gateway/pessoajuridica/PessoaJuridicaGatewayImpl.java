@@ -22,4 +22,9 @@ public class PessoaJuridicaGatewayImpl implements PessoaJuridicaGateway {
 
     return pessoaJuridicaRepository.findById(id).orElseThrow(PessoaJuridicaNaoEncontradaException::new);
   }
+
+  @Override
+  public boolean cnpjExisteParaOutraPessoa(String cpf, Long id) {
+    return pessoaJuridicaRepository.existsByCnpjAndIdNot(cpf, id);
+  }
 }
