@@ -36,7 +36,7 @@ public class PessoaModel implements IPessoa {
   @Column(name = "nome", nullable = false)
   private String nome;
 
-  @Column(name = "email", nullable = false)
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
   @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
