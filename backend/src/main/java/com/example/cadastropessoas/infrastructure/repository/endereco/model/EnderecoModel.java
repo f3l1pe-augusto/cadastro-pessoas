@@ -1,6 +1,7 @@
 package com.example.cadastropessoas.infrastructure.repository.endereco.model;
 
 import com.example.cadastropessoas.domain.endereco.entity.IEndereco;
+import com.example.cadastropessoas.domain.endereco.entity.UF;
 import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
@@ -39,8 +40,9 @@ public class EnderecoModel implements IEndereco {
   @Column(name = "cidade", nullable = false)
   private String cidade;
 
-  @Column(name = "estado", nullable = false)
-  private String estado;
+  @Column(name = "uf", nullable = false)
+  @Enumerated(EnumType.STRING)
+  private UF uf;
 
   @Column(name = "cep", nullable = false)
   private String cep;

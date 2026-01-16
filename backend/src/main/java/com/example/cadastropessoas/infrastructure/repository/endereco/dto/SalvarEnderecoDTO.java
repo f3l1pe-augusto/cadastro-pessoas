@@ -1,5 +1,6 @@
 package com.example.cadastropessoas.infrastructure.repository.endereco.dto;
 
+import com.example.cadastropessoas.domain.endereco.entity.UF;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ public class SalvarEnderecoDTO {
   private String numero;
   private String bairro;
   private String cidade;
-  private String estado;
+  private UF uf;
   private String cep;
   private String complemento;
 }

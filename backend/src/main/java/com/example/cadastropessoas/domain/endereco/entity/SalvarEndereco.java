@@ -8,8 +8,10 @@ import lombok.Setter;
 public class SalvarEndereco {
   private Long id;
   private String logradouro;
+  private String numero;
+  private String bairro;
   private String cidade;
-  private String estado;
+  private UF uf;
   private String cep;
   private String complemento;
 }

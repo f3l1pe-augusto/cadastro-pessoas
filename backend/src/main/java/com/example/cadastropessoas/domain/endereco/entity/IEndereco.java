@@ -9,14 +9,16 @@ public interface IEndereco {
   String getNumero();
   String getBairro();
   String getCidade();
-  String getEstado();
+  UF getUf();
   String getCep();
   String getComplemento();
 
   /* Setters */
   void setLogradouro(String logradouro);
+  void setNumero(String numero);
+  void setBairro(String bairro);
   void setCidade(String cidade);
-  void setEstado(String estado);
+  void setUf(UF uf);
   void setCep(String cep);
   void setComplemento(String complemento);
 
