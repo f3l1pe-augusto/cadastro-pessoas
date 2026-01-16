@@ -13,6 +13,7 @@
       <tr>
         <th>Nome</th>
         <th>CPF / CNPJ</th>
+        <th>E-mail</th>
         <th style="width: 160px" class="text-center">Ações</th>
       </tr>
       </thead>
@@ -23,6 +24,7 @@
         <td>
           {{ pessoa.pessoaFisica?.cpf || pessoa.pessoaJuridica?.cnpj }}
         </td>
+        <td>{{ pessoa.email }}</td>
         <td class="text-center">
           <router-link
             :to="`/editar/${pessoa.id}`"
@@ -59,7 +61,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalExclusaoLabel">
-              Confirmar Exclusão
+              Confirmar exclusão
             </h5>
             <button
               type="button"
