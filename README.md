@@ -105,7 +105,7 @@ O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
 - **Driver**: `org.h2.Driver`
 - **Usuário**: `sa`
 - **Senha**: `password`
-- **DDL Auto**: `update` (mantém os dados entre execuções)
+- **DDL Auto**: `create-drop` (as tabelas são criadas ao iniciar e removidas ao finalizar a aplicação)
 - **Localização do arquivo**: `./data/cadastro_pessoas_db.mv.db`
 
 ## API Endpoints
