@@ -1,6 +1,6 @@
 package com.example.cadastropessoas.infrastructure.repository.telefone.dto;
 
-import com.example.cadastropessoas.domain.tipotelefone.entity.TipoTelefone;
+import com.example.cadastropessoas.domain.telefone.entity.TipoTelefone;
 import lombok.Getter;
 import lombok.Setter;
 

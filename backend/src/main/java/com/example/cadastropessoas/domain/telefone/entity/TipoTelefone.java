@@ -1,7 +1,6 @@
-package com.example.cadastropessoas.domain.tipotelefone.entity;
+package com.example.cadastropessoas.domain.telefone.entity;
 
 public enum TipoTelefone {
-
   TELEFONE_RESIDENCIAL {
     @Override
     public String getDescricao() {
@@ -22,9 +21,4 @@ public enum TipoTelefone {
   };
 
   public abstract String getDescricao();
-
-  @Override
-  public String toString() {
-    return getDescricao();
-  }
 }

@@ -2,7 +2,7 @@ package com.example.cadastropessoas.infrastructure.repository.telefone.model;
 
 import com.example.cadastropessoas.domain.pessoa.entity.IPessoa;
 import com.example.cadastropessoas.domain.telefone.entity.ITelefone;
-import com.example.cadastropessoas.domain.tipotelefone.entity.TipoTelefone;
+import com.example.cadastropessoas.domain.telefone.entity.TipoTelefone;
 import com.example.cadastropessoas.infrastructure.repository.pessoa.model.PessoaModel;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
