@@ -141,7 +141,7 @@ public class SalvarPessoaUseCase {
     pessoa.applyTelefones(telefonesNovos);
   }
 
-  private void validarInput(Input input) throws InputInvalidoException, PessoaNaoEncontradaException {
+  private void validarInput(Input input) throws InputInvalidoException {
     if (input == null) {
       throw new InputInvalidoException("Input inválido.");
     }
@@ -170,19 +170,23 @@ public class SalvarPessoaUseCase {
       throw new InputInvalidoException("A pessoa deve possuir ao menos um endereço.");
     }
 
-    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getLogradouro() == null || endereco.getLogradouro().isBlank())) {
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getLogradouro() == null
+        || endereco.getLogradouro().isBlank())) {
       throw new InputInvalidoException("Logradouro do endereço inválido.");
     }
 
-    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getNumero() == null || endereco.getNumero().isBlank())) {
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getNumero() == null
+        || endereco.getNumero().isBlank())) {
       throw new InputInvalidoException("Número do endereço inválido.");
     }
 
-    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getBairro() == null || endereco.getBairro().isBlank())) {
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getBairro() == null
+        || endereco.getBairro().isBlank())) {
       throw new InputInvalidoException("Bairro do endereço inválido.");
     }
 
-    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCidade() == null || endereco.getCidade().isBlank())) {
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCidade() == null
+        || endereco.getCidade().isBlank())) {
       throw new InputInvalidoException("Cidade do endereço inválida.");
     }
 
@@ -190,7 +194,8 @@ public class SalvarPessoaUseCase {
       throw new InputInvalidoException("UF do endereço inválida.");
     }
 
-    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCep() == null || endereco.getCep().isBlank())) {
+    if (input.getEnderecos().stream().anyMatch(endereco -> endereco.getCep() == null
+        || endereco.getCep().isBlank())) {
       throw new InputInvalidoException("CEP do endereço inválido.");
     }
   }
@@ -200,7 +205,8 @@ public class SalvarPessoaUseCase {
       throw new InputInvalidoException("A pessoa deve possuir ao menos um telefone.");
     }
 
-    if (input.getTelefones().stream().anyMatch(telefone -> telefone.getNumero() == null || telefone.getNumero().isBlank())) {
+    if (input.getTelefones().stream().anyMatch(telefone -> telefone.getNumero() == null
+        || telefone.getNumero().isBlank())) {
       throw new InputInvalidoException("Número do telefone inválido.");
     }
 

@@ -5,4 +5,5 @@ import com.example.cadastropessoas.domain.pessoafisica.exception.PessoaFisicaNao
 
 public interface PessoaFisicaGateway {
   IPessoaFisica obterPorId(Long id) throws PessoaFisicaNaoEncontradaException;
+  boolean cpfExisteParaOutraPessoa(String cpf, Long id);
 }

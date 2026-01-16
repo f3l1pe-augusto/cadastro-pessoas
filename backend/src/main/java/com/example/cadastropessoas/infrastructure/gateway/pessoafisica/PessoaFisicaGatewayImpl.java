@@ -22,4 +22,9 @@ public class PessoaFisicaGatewayImpl implements PessoaFisicaGateway {
 
     return pessoaFisicaRepository.findById(id).orElseThrow(PessoaFisicaNaoEncontradaException::new);
   }
+
+  @Override
+  public boolean cpfExisteParaOutraPessoa(String cpf, Long id) {
+    return pessoaFisicaRepository.existsByCpfAndIdNot(cpf, id);
+  }
 }

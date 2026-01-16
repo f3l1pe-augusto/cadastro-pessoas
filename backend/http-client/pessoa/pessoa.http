@@ -70,7 +70,7 @@ Content-Type: application/json
   "nome": "João Silva Santos",
   "email": "joao.santos@email.com",
   "pessoaFisica": {
-    "cpf": "12345678901",
+    "cpf": "1234567801",
     "dataNascimento": "1990-05-15"
   },
   "enderecos": [

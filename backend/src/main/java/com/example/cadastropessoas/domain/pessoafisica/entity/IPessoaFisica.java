@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public interface IPessoaFisica {
   /* Getters */
+  Long getId();
   String getCpf();
   LocalDate getDataNascimento();
 
