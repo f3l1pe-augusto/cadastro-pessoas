@@ -30,6 +30,12 @@ public class EnderecoModel implements IEndereco {
   @Column(name = "logradouro", nullable = false)
   private String logradouro;
 
+  @Column(name = "numero", nullable = false)
+  private String numero;
+
+  @Column(name = "bairro", nullable = false)
+  private String bairro;
+
   @Column(name = "cidade", nullable = false)
   private String cidade;
 

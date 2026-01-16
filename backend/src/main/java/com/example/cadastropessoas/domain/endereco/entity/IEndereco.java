@@ -6,6 +6,8 @@ public interface IEndereco {
   /* Getters */
   Long getId();
   String getLogradouro();
+  String getNumero();
+  String getBairro();
   String getCidade();
   String getEstado();
   String getCep();
