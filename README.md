@@ -44,7 +44,7 @@ cd cadastro-pessoas
 ### Pré-requisitos
 
 #### Backend
-- Java 21 ou superior
+- Java 21+
 - Maven 3.6+
 
 #### Frontend
