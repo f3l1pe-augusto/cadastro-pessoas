@@ -123,7 +123,7 @@ psql -U postgres
 CREATE DATABASE cadastro_pessoas;
 
 # Saia do psql
-\q`
+\q
 ```
 
 ### Migrations
