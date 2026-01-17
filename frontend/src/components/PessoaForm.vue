@@ -109,7 +109,7 @@
     <h5 class="mt-4 mb-3">Endereço</h5>
 
     <div class="row">
-      <div class="col-md-8 mb-3">
+      <div class="col-md-10 mb-3">
         <label for="logradouro" class="form-label">Logradouro</label>
         <input
           id="logradouro"
@@ -119,7 +119,7 @@
         />
       </div>
 
-      <div class="col-md-4 mb-3">
+      <div class="col-md-2 mb-3">
         <label for="numero" class="form-label">Número</label>
         <input
           id="numero"
@@ -131,7 +131,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-5 mb-3">
+      <div class="col-md-6 mb-3">
         <label for="bairro" class="form-label">Bairro</label>
         <input
           id="bairro"
@@ -141,7 +141,7 @@
         />
       </div>
 
-      <div class="col-md-4 mb-3">
+      <div class="col-md-6 mb-3">
         <label for="complemento" class="form-label">Complemento</label>
         <input
           id="complemento"
@@ -152,7 +152,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 mb-3">
+      <div class="col-md-9 mb-3">
         <label for="cidade" class="form-label">Cidade</label>
         <input
           id="cidade"
@@ -162,7 +162,7 @@
         />
       </div>
 
-      <div class="col-md-2 mb-3">
+      <div class="col-md-1 mb-3">
         <label for="uf" class="form-label">UF</label>
         <select
           id="uf"
@@ -199,7 +199,7 @@
         </select>
       </div>
 
-      <div class="col-md-3 mb-3">
+      <div class="col-md-2 mb-3">
         <label for="cep" class="form-label">CEP</label>
         <input
           id="cep"
