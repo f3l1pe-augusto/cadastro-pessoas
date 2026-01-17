@@ -97,16 +97,38 @@ http://localhost:5173
 
 ## Banco de dados
 
-O projeto utiliza **H2 Database** em modo arquivo para persistência de dados.
+O projeto utiliza **PostgreSQL** para persistência de dados.
 
 ### Configurações
 
-- **URL**: `jdbc:h2:file:./data/cadastro_pessoas_db`
-- **Driver**: `org.h2.Driver`
-- **Usuário**: `sa`
-- **Senha**: `password`
-- **DDL Auto**: `create-drop` (as tabelas são criadas ao iniciar e removidas ao finalizar a aplicação)
-- **Localização do arquivo**: `./data/cadastro_pessoas_db.mv.db`
+- **Banco**: PostgreSQL
+- **URL**: `jdbc:postgresql://localhost:5432/cadastro_pessoas`
+- **Usuário**: `postgres`
+- **Senha**: `postgres`
+- **Porta**: `5432`
+
+### Pré-requisitos adicionais
+
+- PostgreSQL 18+ instalado e em execução
+
+### Criando o banco de dados
+
+Antes de executar a aplicação, crie o banco de dados:
+
+```bash
+# Acesse o PostgreSQL
+psql -U postgres
+
+# Crie o banco de dados
+CREATE DATABASE cadastro_pessoas;
+
+# Saia do psql
+\q`
+```
+
+### Migrations
+
+O projeto utiliza **Flyway** para gerenciar migrações de banco de dados. As migrações são aplicadas automaticamente ao iniciar a aplicação.
 
 ## API Endpoints
 
