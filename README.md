@@ -39,7 +39,7 @@ git clone https://github.com/f3l1pe-augusto/cadastro-pessoas.git
 cd cadastro-pessoas
 ```
 
-## 🔧 Como executar
+## Como executar
 
 ### Pré-requisitos
 
